@@ -2,7 +2,7 @@
  Program by: Adam LaFleur
  Date: June 3, 2019
  Class: CS202 - Programming Systems
- Program: #4/5 - Fair Management
+ Program: #4 - Fair Management
  File: Node.java
  Purpose: The purpose of this program is to keep track of vendors for the Rose Festival. The
  program keeps track of their info and location and prevents booths of the same type or name
@@ -88,8 +88,8 @@ public class Node {
         boolean result = true;
         if(compare_neighbor(to_add.getName()))
         {
-            result = false;
             System.out.println("\nCannot add a vendor here, same name or food type.");
+            return false;
         }
         else if(curr_size < max_size) {
             id = (this.block_ID * 100) + (curr_size + 1);

@@ -66,6 +66,10 @@ public abstract class Vendor extends Type {
         System.out.println("ID: " + this.vendor_id);
     }
 
+    //Abstract Function defining the dynamic type_toString function.
+    public abstract String type_toString();
+
     //Abstract Function defining the dynamic display_vendor function.
     public abstract void display_vendor();
+
 }

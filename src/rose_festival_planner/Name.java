@@ -58,6 +58,12 @@ public class Name {
         }
     }
 
+    //Function used to convert a string into an array of strings using space as regex, returns a String array.
+    public String [] string_toArray()
+    {
+        return this.name.split("\\s+");
+    }
+
     //Recursive Function for public method, takes a array of strings and an int as arguments and returns a boolean.
     private boolean containsString(String [] array, int num)
     {

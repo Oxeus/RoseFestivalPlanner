@@ -27,6 +27,19 @@ public class Food extends Vendor {
         super(name, vendor_id, type);
     }
 
+    //Function used to change vendor type into a string. Returns a String.
+    public String type_toString()
+    {
+        if(compareType(vendor_type.FOOD))
+        {
+            return "Food";
+        }
+        else
+        {
+            return "Blank";
+        }
+    }
+
     //Function used to print info for food class.
     public void display_vendor() {
         printName();

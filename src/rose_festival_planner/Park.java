@@ -1,6 +1,6 @@
 /******************************************************************************************
  Program by: Adam LaFleur
- Date: June 3, 2019
+ Date: June 7, 2019
  Class: CS202 - Programming Systems
  Program: #4/5 - Fair Management
  File: Park.java
@@ -40,12 +40,11 @@ public class Park extends Util {
     }
 
     //Recursive function used to control the program menu, takes a boolean as input.
-    private void control_menu(boolean confirm) {
-        if (confirm == false) {
+    private void control_menu(boolean control) {
+        if (!control) {
             return;
         }
         int choice = 0;
-        boolean control = true;
         System.out.println("\n------ Management Menu ------");
         System.out.println(" 01) Add a Vendor. ");
         System.out.println(" 02) Display Vendors. ");
@@ -58,7 +57,10 @@ public class Park extends Util {
         System.out.print("Enter a Choice: ");
         choice = sc.nextInt();
         sc.nextLine();
-        System.out.println();
+        if(choice != 0)
+        {
+            System.out.println();
+        }
 
         switch (choice) {
             case 0:
@@ -71,10 +73,17 @@ public class Park extends Util {
                 management.display();
                 break;
             case 3:
-                customer.display();
+                System.out.print("Please enter 1 for pre-order, 2 for in-order, or 3 for post-order: ");
+                choice = sc.nextInt();
+                sc.nextLine();
+                System.out.println();
+                customer.display(choice - 1);
                 break;
             case 4:
-                customer.find_vendor();
+                System.out.print("Please enter a keyword: ");
+                String keyword = sc.nextLine();
+                System.out.println();
+                customer.retrieve(keyword);
                 break;
             default:
                 System.out.println("Invalid Choice! ");
@@ -84,7 +93,7 @@ public class Park extends Util {
     }
 
     //Function used to create a vendor and send it to both data structures, returns a boolean.
-    private boolean add_vendors() {
+    private void add_vendors() {
         Vendor to_add = null;
         System.out.print("Enter Name: ");
         String name = sc.nextLine();
@@ -103,10 +112,10 @@ public class Park extends Util {
         } else if (type.toUpperCase().contains("TALENT")) {
             to_add = new Talent(name, 0, vendor_type.TALENT);
         } else {
-            return false;
+            return;
         }
-        management.add_vendor(to_add, section);
-        customer.add_vendor(to_add);
-        return true;
+        if(management.add_vendor(to_add, section)) {
+            customer.add_vendor(to_add);
+        }
     }
 }

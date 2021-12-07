@@ -2,7 +2,7 @@
  Program by: Adam LaFleur
  Date: June 3, 2019
  Class: CS202 - Programming Systems
- Program: #4/5 - Fair Management
+ Program: #4 - Fair Management
  File: Circular_List.java
  Purpose: The purpose of this program is to keep track of vendors for the Rose Festival. The
  program keeps track of their info and location and prevents booths of the same type or name
@@ -118,7 +118,7 @@ public class Circular_List {
                     if(here.hamburger_count >= 7)
                     {
                         System.out.println("\nHamburger Count is max, cannot add new vendor!");
-                        return true;
+                        return false;
                     }
                     ++here.hamburger_count;
                 }
@@ -127,12 +127,12 @@ public class Circular_List {
                     if(here.hotdog_count >= 7)
                     {
                         System.out.println("\nHotdog Count is max, cannot add new vendor!");
-                        return true;
+                        return false;
                     }
                     ++here.hotdog_count;
                 }
             }
-            add_vendor(rear.getNext(), to_add, block);
+            return add_vendor(rear.getNext(), to_add, block);
         }
         return false;
     }
@@ -142,8 +142,7 @@ public class Circular_List {
     {
         if(block == 1)
         {
-            rear.add_vendor(to_add);
-            return true;
+            return rear.add_vendor(to_add);
         }
         return add_vendor(rear.getNext(), to_add, --block);
     }
@@ -196,7 +195,6 @@ public class Circular_List {
                 System.out.println("Block: " + block);
                 System.out.println("*********");
                 rear.display_vendors();
-                System.out.println();
             }
             return true;
         }
